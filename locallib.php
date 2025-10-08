@@ -448,7 +448,7 @@ function certificate_get_issues($certificateid, $sort="ci.timecreated ASC", $gro
     $allparams = $conditionsparams + array('certificateid' => $certificateid);
 
     // The picture fields also include the name fields for the user.
-    $picturefields = user_picture::fields('u', get_extra_user_fields($context));
+    $picturefields = user_picture::fields('u', \core_user\fields::for_identity($context, false)->get_required_fields());
     $users = $DB->get_records_sql("SELECT $picturefields, u.idnumber, ci.code, ci.timecreated
                                      FROM {user} u
                                INNER JOIN {certificate_issues} ci
