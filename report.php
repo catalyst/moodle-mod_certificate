@@ -231,7 +231,7 @@ if ($download == "txt") {
     // Print names of all the fields
     echo get_string("lastname"). "\t" .get_string("firstname") . "\t";
     foreach ($extrafields as $field) {
-        echo get_user_field_name($field) . "\t";
+        echo \core_user\fields::get_display_name($field) . "\t";
     }
     echo get_string("group"). "\t";
     echo $strdate. "\t";
@@ -271,7 +271,7 @@ $table->tablealign = "center";
 $table->head = array($strto);
 $table->align = array('left');
 foreach ($extrafields as $field) {
-    $table->head[] = get_user_field_name($field);
+    $table->head[] = \core_user\fields::get_display_name($field);
     $table->align[] = 'left';
 }
 $table->head = array_merge($table->head, array($strdate, $strgrade, $strcode));
